@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <body class="review-background-image">
+    <div class="navigation-attrs">
+        <p>
+            <a href="{% url 'profile-home' %}">
+                <img id="logo-img" src="{% static '/images/logo.jpg' %}" alt="logo"/>
+            </a>
+        </p>
+        <a href="{% url 'details-review' %}"><h1 id="review-header">Reviews</h1></a>
+        <a id="all-add" href="{% url 'add-review' %}">Add review</a>
+
+        <div class="filter-container">
+            <form method="get" action="{% url 'details-review' %}">
+                <label for="filter">Filter by Rating:</label>
+                <select name="filter" id="filter">
+                    <option value="highest" {% if request.GET.filter == "highest" %}selected{% endif %}>Highest Rating
+                    </option>
+                    <option value="lowest" {% if request.GET.filter == "lowest" %}selected{% endif %}>Lowest Rating
+                    </option>
+                </select>
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-all">
+        {% if not reviews %}
+            <p id="empty-list">No reviews added yet</p>
+        {% else %}
+            {% for review in reviews %}
+                <div class="review-box">
+                    <img src="{{ review.destination.image }}" alt="img destination" class="destination-review">
+                    <h2>{{ review.destination }}</h2>
+
+                    <div class="details">
+                        <div class="detail-item"><a>Profile: </a>{{ review.profile.username }}</div>
+                        <p class="detail-item-review-stars">
+                            <a>Rating: </a>
+                            <span>{{ review.stars_display }}</span><a> {{ review.rating }}/10</a>
+                        </p>
+                        <div class="detail-item"><a>Comment: </a>{{ review.comment }}</div>
+                        <div class="detail-item">
+                            <a>Is approved: </a>
+                            {% if review.is_approved %}
+                                <span style="color: #1cf61c;">✔</span>
+                            {% else %}
+                                <span style="color: red;">✘</span>
+                            {% endif %}
+                        </div>
+                        <div class="detail-item"><a>Created at: </a>{{ review.created_at }}</div>
+                    </div>
+
+                    <div id="buttons-edit-delete">
+                        <a href="{% url 'edit-review' pk=review.pk %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'delete-review' pk=review.pk %}" id="delete-btn">Delete</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    </body>
+
+{% endblock %} 

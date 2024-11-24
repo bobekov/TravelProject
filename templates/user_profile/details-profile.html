@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <body class="profile-background-image">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <section id="details-profile">
+        <a href="{% url 'profile-home' %}" class="back-arrow">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+
+        <h2>Profile Details</h2>
+
+        {% if object.profile_picture %}
+            <img id="details-img" src="{{ object.profile_picture }}" alt="profile img"/>
+        {% else %}
+            <img id="details-img" src="{% static '/images/incognito-picture.jpg' %}" alt="profile img"/>
+        {% endif %}
+
+        <p id="details-title">{{ object.username }}</p>
+
+        <div id="details-description">
+            <p>
+                <span>Phone number: </span>{{ object.phone_number }}
+            </p>
+            <p>
+                <span>Address: </span>{{ object.address }}
+            </p>
+            <p>
+            <span>Info: </span>
+                {% if object.info %}
+                    {{ object.info }}
+                {% else %}
+                    Hey there! I'm {{ object.username }}, a passionate traveler with a love for exploring new
+                    cultures, trying exotic foods, and capturing the beauty of the world through my camera lens.
+                {% endif %}
+            </p>
+        </div>
+
+        <div id="action-buttons">
+            <a href="{% url 'edit-profile' pk=object.pk %}" id="edit-btn">Edit</a>
+            <a href="{% url 'delete-profile' pk=object.pk %}" id="delete-btn">Delete</a>
+        </div>
+    </section>
+    </body>
+
+{% endblock %}

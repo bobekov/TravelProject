@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <body class="profile-background-image">
+
+    <div class="navigation-attrs">
+        <p>
+            <a href="{% url 'my-bookings' %}">
+                <img id="logo-img" src="{% static '/images/logo.jpg' %}" alt="logo"/>
+            </a>
+        </p>
+        <h1 id="booking-flight-hotel-h1">Flight Reservations</h1>
+        <a id="all-add" href="{% url 'details-flight' %}">See available flights</a>
+
+        <div class="filter-container">
+            <form method="get" action="{% url 'flight-bookings' %}">
+                <label for="filter">Filter by Date:</label>
+                <select name="filter" id="filter">
+                    <option value="latest" {% if request.GET.filter == "latest" %}selected{% endif %}>Newest</option>
+                    <option value="oldest" {% if request.GET.filter == "oldest" %}selected{% endif %}>Oldest</option>
+                </select>
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-all">
+        {% if not bookings %}
+            <p id="empty-list">You have not booked any flights yet.</p>
+        {% else %}
+            {% for booking in bookings %}
+
+                <div class="flight-box">
+                    <div id="flight-company">
+                        <img src="{{ booking.flight.airlines_logo }}" alt="img destination" class="flight-logo">
+                        <h2>{{ booking.flight.airlines }}</h2>
+                    </div>
+
+                    <h3><a>Flight number: </a>{{ booking.flight.flight_number }}</h3>
+
+                    <div class="details">
+                        <div class="detail-item"><a>Destination: </a>{{ booking.flight.destinations }}</div>
+                        <div class="detail-item"><a>Departure time: </a>{{ booking.flight.departure_time }}</div>
+                        <div class="detail-item"><a>Arrival time: </a>{{ booking.flight.arrival_time }}</div>
+                        <div class="detail-item"><a>Flight duration: </a>{{ booking.flight.flight_duration }}</div>
+                        <div class="detail-item"><a>Price: </a>{{ booking.flight.price }}<a>€</a></div>
+                        <div class="detail-item"><a>Is direct: </a>
+                            {% if booking.flight.is_direct %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </div>
+                        <div class="detail-item"><a>Booking date: </a>{{ booking.booking_date }}</div>
+                    </div>
+
+                    <div id="buttons-edit-delete">
+                        <div id="delete">
+                            <a href="{% url 'delete-booking-flight' pk=booking.flight.pk %}" id="delete-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    </body>
+
+{% endblock %} 

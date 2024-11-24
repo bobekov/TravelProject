@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <body class="main-profile-background-image">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <div>
+        <p>
+            <a href="{% url 'profile-home' %}">
+                <img id="logo-img" src="{% static '/images/logo.jpg' %}" alt="logo"/>
+            </a>
+        </p>
+        <h1 id="booking-header">My Bookings</h1>
+
+        <div id="flight-hotel">
+            <a id="flight-booking" href="{% url 'flight-bookings' %}">
+                <i class="fas fa-plane"></i>
+                <span>Flight Reservations</span>
+            </a>
+            <a id="hotel-booking" href="{% url 'hotel-bookings' %}">
+                <i class="fas fa-hotel"></i>
+                <span>Hotel Reservations</span>
+            </a>
+        </div>
+    </div>
+
+    </body>
+
+{% endblock %} 

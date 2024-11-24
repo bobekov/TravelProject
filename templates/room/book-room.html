@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <body class="room-background-image">
+
+    <div class="container-book">
+        <h1>Are you sure you want to book this room?</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div id="buttons-confirmation">
+                <input class="btn submit yes" type="submit" name="confirmation" value="Yes"/>
+                <input class="btn submit no" type="submit" name="confirmation" value="No"/>
+            </div>
+        </form>
+    </div>
+    
+    </body>
+
+{% endblock %} 

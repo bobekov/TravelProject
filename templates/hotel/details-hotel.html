@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <body class="hotel-background-image">
+    <div class="navigation-attrs">
+        <p>
+            <a href="{% url 'profile-home' %}">
+                <img id="logo-img" src="{% static '/images/logo.jpg' %}" alt="logo"/>
+            </a>
+        </p>
+        <a href="{% url 'details-hotel' %}"><h1 id="hotel-header">Hotels</h1></a>
+        <a id="all-add" href="{% url 'add-hotel' %}">Add hotel</a>
+
+        <div class="search-container">
+            <form method="get" action="">
+                <input type="text" name="search" placeholder="Search by hotel name" value="{{ request.GET.search }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="container-all">
+        {% if not hotels %}
+            <p id="empty-list">No hotels added yet</p>
+        {% else %}
+            {% for hotel in hotels %}
+                <div class="hotel-box">
+                    <div id="hotel-main">
+                        <div class="stars-item">{{ hotel.stars_display }}</div>
+                        <h2>{{ hotel.name }}</h2>
+                    </div>
+
+                    <div class="details">
+                        <div class="detail-item"><a>Phone number: </a>{{ hotel.phone_number }}</div>
+                        <div class="detail-item"><a>Address: </a>{{ hotel.address }}</div>
+                        <div class="detail-item"><a>Check in time: </a>{{ hotel.check_in_time }}</div>
+                        <div class="detail-item"><a>Amenities: </a>{{ hotel.amenities }}</div>
+                        <div class="detail-item"><a>Available rooms: </a>{{ hotel.available_rooms }}</div>
+                        <div class="detail-item"><a>Payment method: </a>{{ hotel.payment_method }}</div>
+                    </div>
+
+                    <div id="buttons-edit-delete">
+                        <a href="{% url 'edit-hotel' pk=hotel.pk %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'delete-hotel' pk=hotel.pk %}" id="delete-btn">Delete</a>
+                    </div>
+                    <div id="hotel-rooms">
+                        <a href="{% url 'hotel-rooms' hotel_pk=hotel.pk %}" id="view-rooms">Rooms</a>
+                    </div>
+
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    </body>
+
+{% endblock %} 

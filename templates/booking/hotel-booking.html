@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <body class="profile-background-image">
+
+    <div class="navigation-attrs">
+        <p>
+            <a href="{% url 'my-bookings' %}">
+                <img id="logo-img" src="{% static '/images/logo.jpg' %}" alt="logo"/>
+            </a>
+        </p>
+        <h1 id="booking-flight-hotel-h1">Hotel Reservations</h1>
+        <a id="all-add" href="{% url 'details-hotel' %}">See all hotels</a>
+
+        <div class="filter-container">
+            <form method="get" action="{% url 'hotel-bookings' %}">
+                <label for="filter">Filter by Date:</label>
+                <select name="filter" id="filter">
+                    <option value="latest" {% if request.GET.filter == "latest" %}selected{% endif %}>Newest</option>
+                    <option value="oldest" {% if request.GET.filter == "oldest" %}selected{% endif %}>Oldest</option>
+                </select>
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-all">
+        {% if not room_bookings %}
+            <p id="empty-list">You have not booked any room yet.</p>
+        {% else %}
+            {% for booking in room_bookings %}
+                <div class="room-box">
+                    <img src="{{ booking.room.image }}" alt="img room" class="img-room">
+                    <h1 id="hotel-name">{{ booking.room.hotel }}</h1>
+                    <h2>{{ booking.room.room_type }}</h2>
+
+                    <h3><a>Price per night: </a>{{ booking.room.price_per_night }}<a>€</a></h3>
+
+                    <div class="details">
+                        <div class="detail-item"><a>Room number: </a>{{ booking.room.room_number }}</div>
+                        <div class="detail-item"><a>Description: </a>{{ booking.room.description }}</div>
+                        <div class="detail-item">
+                            <a>Air conditioning: </a>
+                            {% if booking.room.air_conditioning %}
+                                <span style="color: #1cf61c;">✔</span>
+                            {% else %}
+                                <span style="color: #ff0000;">✘</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="detail-item">
+                            <a>Bathtub: </a>
+                            {% if booking.room.bathtub %}
+                                <span style="color: #1cf61c;">✔</span>
+                            {% else %}
+                                <span style="color: red;">✘</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="detail-item">
+                            <a>TV: </a>
+                            {% if booking.room.tv %}
+                                <span style="color: #1cf61c;">✔</span>
+                            {% else %}
+                                <span style="color: red;">✘</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="detail-item">
+                            <a>Balcony: </a>
+                            {% if booking.room.balcony %}
+                                <span style="color: #1cf61c;">✔</span>
+                            {% else %}
+                                <span style="color: red;">✘</span>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    <div id="buttons-edit-delete">
+                        <div id="delete">
+                            <a href="{% url 'delete-booking-room' pk=booking.room.pk %}" id="delete-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    </body>
+
+{% endblock %} 

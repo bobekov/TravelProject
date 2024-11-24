@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <body class="country-background-image">
+    <div class="navigation-attrs">
+        <p>
+            <a href="{% url 'profile-home' %}">
+                <img id="logo-img" src="{% static '/images/logo.jpg' %}" alt="logo"/>
+            </a>
+        </p>
+        <a href="{% url 'details-country' %}"><h1 id="country-header">Countries</h1></a>
+        <a id="all-add" href="{% url 'add-country' %}">Add country</a>
+
+        <div class="search-container">
+            <form method="get" action="">
+                <input type="text" name="search" placeholder="Search by country name" value="{{ request.GET.search }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="container-all">
+        {% if not countries %}
+            <p id="empty-list">No countries added yet</p>
+        {% else %}
+            {% for country in countries %}
+                <div class="country-box">
+                    <div class="country-info">
+                        <img src="{{ country.flag }}" alt="img flag" class="country-flag">
+                        <h2>{{ country.name }}</h2>
+                    </div>
+
+                    <div class="details">
+                        <p class="detail-item"><a>Continent: </a>{{ country.continent }}</p>
+                        <div class="detail-item"><a>Capital: </a>{{ country.capital }}</div>
+                        <div class="detail-item"><a>Population: </a>{{ country.population }}<a>М</a></div>
+                        <div class="detail-item"><a>Official Language: </a>{{ country.official_language }}</div>
+                        <div class="detail-item"><a>Currency: </a>{{ country.currency }}</div>
+                        <div class="detail-item">
+                            <a>Visited: </a>
+                            {% if country.is_visited %}
+                                <span style="color: #1cf61c;">✔</span>
+                            {% else %}
+                                <span style="color: red;">✘</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if country.description %}
+                        <div class="detail-item"><a>Description: </a>{{ country.description }}</div>
+                    {% endif %}
+
+                    <div id="buttons-edit-delete">
+                        <a href="{% url 'edit-country' pk=country.pk %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'delete-country' pk=country.pk %}" id="delete-btn">Delete</a>
+                    </div>
+                </div>
+                
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    </body>
+
+{% endblock %} 
