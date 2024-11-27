@@ -101,3 +101,4 @@ def book_room(request, pk):
             return redirect('hotel-rooms', hotel_pk=hotel.pk)
 
     return render(request, 'room/book-room.html', {'room': room})
+

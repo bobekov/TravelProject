@@ -44,6 +44,7 @@
     font-weight: 500;
     padding: 6px 12px;
     margin-top: 10%;
+    margin-right: -2.3%;
     position: absolute;
     right: 7%;
 }
@@ -58,7 +59,7 @@
     width: auto;
     justify-content: flex-start;
     margin-top: 90px;
-    margin-right: 6.7%;
+    margin-right: 4%;
 }
 
 .search-container input[type="text"] {
@@ -104,12 +105,9 @@
 
 .container-all #empty-list {
     font-size: 400%;
-    color: #4822aa;
+    color: #ffffff;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(45deg, #655823, #ff4a76, #3702c1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .country-box {
@@ -177,6 +175,7 @@
     margin-top: 18px;
     justify-content: space-between;
     width: 100%;
+    gap: 7px;
 }
 
 #buttons-edit-delete a {
