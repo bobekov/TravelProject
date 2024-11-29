@@ -1,6 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from travel_project.country.forms import AddCountry
 from travel_project.country.models import Country
+from travel_project.country.serializers import CountrySerializer
+
+
+@api_view(['GET'])
+def details_country_rest(request):
+    countries = Country.objects.all()
+
+    serializer = CountrySerializer(countries, many=True)
+    return Response(serializer.data)
 
 
 def details_country(request):

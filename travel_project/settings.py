@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'travel_project.room',
     'travel_project.user_profile',
     'travel_project.common',
-    'travel_project.booking'
+    'travel_project.booking',
+
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

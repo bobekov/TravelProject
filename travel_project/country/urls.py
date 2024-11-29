@@ -2,6 +2,7 @@ from django.urls import path, include
 from travel_project.country import views
 
 urlpatterns = [
+    path('details_country_rest/', views.details_country_rest, name='details-country-rest'),
     path('details_country/', views.details_country, name='details-country'),
     path('add_country/', views.add_new_country, name='add-country'),
     path('<int:pk>/', include([

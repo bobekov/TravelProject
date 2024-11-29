@@ -12,6 +12,28 @@
     position: relative;
 }
 
+.api-container {
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    font-family: "monospace", monospace;
+    text-decoration: none;
+    border: 2px solid #090909;
+    border-radius: 10px;
+    background-color: #e18b1a;
+    font-weight: 500;
+    padding: 6px 12px;
+    margin-top: 10%;
+    margin-left: 2%;
+    position: absolute;
+}
+
+.api-container:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    background-color: #d66225;
+}
+
 #country-header {
     font-size: 5.8rem;
     margin-top: 10px;
@@ -44,7 +66,7 @@
     font-weight: 500;
     padding: 6px 12px;
     margin-top: 10%;
-    margin-right: -2.3%;
+    margin-right: -2.8%;
     position: absolute;
     right: 7%;
 }

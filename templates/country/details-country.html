@@ -9,6 +9,9 @@
                 <img id="logo-img" src="{% static '/images/logo.jpg' %}" alt="logo"/>
             </a>
         </p>
+        
+        <a class="api-container" href="{% url 'details-country-rest' %}">Countries via API</a>
+
         <a href="{% url 'details-country' %}"><h1 id="country-header">Countries</h1></a>
         <a id="all-add" href="{% url 'add-country' %}">Add country</a>
 
@@ -56,7 +59,7 @@
                         <a href="{% url 'delete-country' pk=country.pk %}" id="delete-btn">Delete</a>
                     </div>
                 </div>
-                
+
             {% endfor %}
         {% endif %}
     </div>
