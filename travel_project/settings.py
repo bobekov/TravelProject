@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
+# from decouple import config
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,12 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-abgjz@np6^)ev+#c#@5==u1v7u=1@ztp_*kvcn=7o#3pw#2o(!'
+
+SECRET_KEY ='django-insecure-abgjz@np6^)ev+#c#@5==u1v7u=1@ztp_*kvcn=7o#3pw#2o(!'
+# SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+# DEBUG = os.getenv('DEBUG', config('DEBUG')) == "True"
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS')).split(',')
 
 
 # Application definition
@@ -87,6 +91,7 @@ WSGI_APPLICATION = 'travel_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -97,6 +102,16 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv('DB_NAME', config('DB_NAME')),
+#         "USER": os.getenv('DB_USER', config('DB_USER')),
+#         "PASSWORD": os.getenv('DB_PASS', config('DB_PASS')),
+#         "HOST": os.getenv('DB_HOST', config('DB_HOST')),
+#         "PORT": os.getenv('DB_PORT', config('DB_PORT')),
+#     }
+# }
 
 
 # Password validation
