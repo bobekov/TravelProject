@@ -44,3 +44,24 @@ class TestCountryDelete(TestCase):
         self.assertFalse(Country.objects.filter(pk=self.country.pk).exists())
         self.assertRedirects(response, reverse('details-country'))
 
+    def test_country_delete_failure_invalid_method(self):
+        self.assertTrue(Country.objects.filter(pk=self.country.pk).exists())
+
+        response = self.client.get(
+            reverse('delete-country', kwargs={'pk': self.country.pk})
+        )
+
+        self.assertTrue(Country.objects.filter(pk=self.country.pk).exists())
+        self.assertEqual(response.status_code, 200)
+
+    def test_country_delete_failure_no_confirmation(self):
+        self.assertTrue(Country.objects.filter(pk=self.country.pk).exists())
+
+        response = self.client.post(
+            reverse('delete-country', kwargs={'pk': self.country.pk}),
+            data={'confirmation': ''}
+        )
+
+        self.assertTrue(Country.objects.filter(pk=self.country.pk).exists())
+        self.assertRedirects(response, reverse('details-country'))
+
