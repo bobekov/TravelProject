@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 
 DEBUG = os.getenv('DEBUG', config('DEBUG')) == "True"
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS')).split(',')
+ALLOWED_HOSTS = ['travelapp-fjd0efade5b2akdq.italynorth-01.azurewebsites.net', 'localhost']
 
 # Application definition
 
