@@ -23,8 +23,8 @@ cd <repository_directory>
 **`Set up a virtual environment`**
 
 python -m venv venv  
-source venv/bin/activate   # For Linux/macOS  
-venv\Scripts\activate      # For Windows  
+source venv/bin/activate     &nbsp; &nbsp;  # Linux/macOS  
+venv\Scripts\activate        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  # For Windows  
 
 **`Install dependencies`**
   
@@ -58,7 +58,7 @@ The private section of the application is reserved for authenticated users only.
 
 <img src="https://github.com/user-attachments/assets/0f9ca3bc-b74e-4c41-92c8-d0d4d8d87b90" width="600" />
 
---
+---
 <h2>Usage</h2>
 After setting up and running the project locally, you can navigate through the various sections of the application as follows:
 
