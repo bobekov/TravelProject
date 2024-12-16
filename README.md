@@ -23,7 +23,7 @@ cd <repository_directory>
 **`Set up a virtual environment`**
 
 python -m venv venv  
-source venv/bin/activate     &nbsp; &nbsp;  # Linux/macOS  
+source venv/bin/activate     &nbsp; &nbsp;  # For Linux/macOS  
 venv\Scripts\activate        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  # For Windows  
 
 **`Install dependencies`**
@@ -53,7 +53,7 @@ The private section of the application is reserved for authenticated users only.
 
 - **User Profile Management:** Users can view, edit, and delete their profiles, including personal information such as phone numbers, addresses, and profile pictures.  
 - **Reservations:** Users can create and manage reservations for flights, hotel rooms.  
-- **Logout:** Users can log out from the private section, which will end their session and redirect them to the home page.  
+- **Logout:** Users can log out, which will end their session and redirect them to the home page.  
 - **Models for:** Countries, Destinations, Flights, Hotels, Rooms, and Reviews  
 
 <img src="https://github.com/user-attachments/assets/0f9ca3bc-b74e-4c41-92c8-d0d4d8d87b90" width="600" />
