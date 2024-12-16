@@ -60,12 +60,14 @@ The private section of the application is reserved for authenticated users only.
 
 --
 <h2>Usage</h2>
-After setting up and running the project locally, you can navigate through the various sections of the application as follows:  
-Countries and Destinations: As an authenticated user, you can browse a list of countries and view related destinations.   
-Flight and Hotel Booking: Check available flights and hotel rooms at your selected destination and proceed to make a reservation.
-Reviews: Share your experience by writing reviews for destinations.
+After setting up and running the project locally, you can navigate through the various sections of the application as follows:
 
-<h2>License</h2>
+1. **Countries and Destinations:** As an authenticated user, you can browse a list of countries and view related destinations.  
+2. **Flight and Hotel Booking:** Check available flights and hotel rooms at your selected destination and proceed to make a reservation.  
+3. **Reviews:** Share your experience by writing reviews for destinations.  
+
+<h2>License</h2>  
+
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 
